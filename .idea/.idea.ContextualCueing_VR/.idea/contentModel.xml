@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Exp_Psy\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Exp_Psy\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_ContextualCueing_VR.1410411968.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Exp_Psy\Desktop\Experiments\Nico\ContextualCueing_VR" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Backup" t="Include">
+          <e p="spawner.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="choosetrial.cs" t="Include" />
+          <e p="colorlerper.cs" t="Include" />
+          <e p="fisheryates.cs" t="Include" />
+          <e p="InterTrialInterBlock.cs" t="Include" />
+          <e p="spawner.cs" t="Include" />
+          <e p="StartMeUp.cs" t="Include" />
+          <e p="SubInfo.cs" t="Include" />
+          <e p="SubjectInput.cs" t="Include" />
+          <e p="timer.cs" t="Include" />
+          <e p="TrackBehavioralData.cs" t="Include" />
+          <e p="trial.cs" t="Include" />
+        </e>
+      </e>
+      <e p="ContextualCueing_VR.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
