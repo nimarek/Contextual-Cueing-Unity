@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class colorlerper : MonoBehaviour
+public class ColorLerper : MonoBehaviour
 {
     public Color endColor;
     public float speed = 1.0f;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InterTrialInterBlock : MonoBehaviour
 {
-    public float blockPauseDuration;
+    public float interBlockTime;
     private Vector3 centerPos;
     private Quaternion centerRot;
     public ChooseTrial ChooseTrial;
@@ -14,20 +14,20 @@ public class InterTrialInterBlock : MonoBehaviour
 
     public Spawner Spawner;
     public SubjectInput SubjectInput;
-    public TrackBehavioralData TrackBehavioralData;
-
-    public void StartInterTrialFixation()
+    
+    public void StartInterTrialFixation(Vector3 centerPosition, int numCircles)
     {
-        centerPos[1] = 3;
-
-        var instanceOfInterTrialFixation = Instantiate(interTrialFixation, centerPos, centerRot, transform);
+        centerPosition[1] = numCircles / 2;
+        
+        var instanceOfInterTrialFixation = Instantiate(interTrialFixation, centerPosition, centerRot, transform);
+        instanceOfInterTrialFixation.gameObject.tag = "InterTrialFixation";
         instanceOfInterTrialFixation.transform.localScale = new Vector3(scaleInterTrialFixation,
             scaleInterTrialFixation, scaleInterTrialFixation);
     }
 
-    public void StartInterBlockFixation()
+    public void StartInterBlockFixation(Vector3 centerPosition, int numCircles)
     {
-        centerPos[1] = 3;
+        centerPosition[1] = numCircles / 2;
 
         SubjectInput.blockPause = true;
 
@@ -35,13 +35,13 @@ public class InterTrialInterBlock : MonoBehaviour
         instanceOfInterBlockFixation.transform.localScale = new Vector3(scaleInterBlockFixation,
             scaleInterBlockFixation, scaleInterBlockFixation);
 
-        Invoke("DeleteAllChildren", blockPauseDuration);
+        Invoke("DeleteAllChildren", interBlockTime);
         StartCoroutine("interBlockPause");
     }
 
     private IEnumerator interBlockPause()
     {
-        yield return new WaitForSeconds(blockPauseDuration);
+        yield return new WaitForSeconds(interBlockTime);
         ChooseTrial.ShuffleTrialOrder(Spawner.trialMarkers);
     }
 

@@ -6,26 +6,25 @@ using UnityEngine;
 public class TrackBehavioralData : MonoBehaviour
 {
     private readonly List<string[]> rowData = new List<string[]>();
+    public InterTrialInterBlock InterTrialInterBlock;
     public SubInfo SubInfo;
     public Timer Timer;
-    public InterTrialInterBlock InterTrialInterBlock;
 
     public void Start()
     {
-        SubInfo = new SubInfo();
-        writeHeaderRT();
+        WriteHeader();
     }
 
-    private string getBehavPath()
+    private string GetDataPath()
     {
         return Application.dataPath + "/Data/" + "sub-" + FindObjectOfType<SubInfo>().subID + "_data.csv";
     }
 
-    public void writeHeaderRT()
+    public void WriteHeader()
     {
         var rowDataTemp = new string[14];
         rowDataTemp[0] = "sub-ID";
-        rowDataTemp[1] = "gender";
+        rowDataTemp[1] = "sex";
         rowDataTemp[2] = "corrected";
         rowDataTemp[3] = "age";
         rowDataTemp[4] = "block";
@@ -39,32 +38,32 @@ public class TrackBehavioralData : MonoBehaviour
         rowDataTemp[12] = "targetPosition";
         rowData.Add(rowDataTemp);
 
-        writeBehavData();
+        WriteResponseData();
     }
 
-    public void saveTrial()
+    public void FindResponseVariables()
     {
         var rowDataTemp = new string[14];
         rowDataTemp[0] = FindObjectOfType<SubInfo>().subID;
-        rowDataTemp[1] = FindObjectOfType<SubInfo>().gender;
+        rowDataTemp[1] = FindObjectOfType<SubInfo>().sex;
         rowDataTemp[2] = FindObjectOfType<SubInfo>().corrected;
         rowDataTemp[3] = FindObjectOfType<SubInfo>().age;
         rowDataTemp[4] = FindObjectOfType<ChooseTrial>().countBlock.ToString();
         rowDataTemp[5] = FindObjectOfType<ChooseTrial>().countTrialGlobal.ToString();
         rowDataTemp[6] = FindObjectOfType<ChooseTrial>().countTrialBlock.ToString();
         rowDataTemp[7] = FindObjectOfType<SubjectInput>().isFixedTrial.ToString(); // true for fixed, false for rnd
-        rowDataTemp[8] = FindObjectOfType<Timer>().globalTime.ToString();
-        rowDataTemp[9] = FindObjectOfType<Timer>().currentTime.ToString();
+        rowDataTemp[8] = FindObjectOfType<Timer>().globalTime.ToString("F3");
+        rowDataTemp[9] = FindObjectOfType<Timer>().currentTime.ToString("F3");
         rowDataTemp[10] = FindObjectOfType<Spawner>().flipTarget.ToString();
         rowDataTemp[11] =
             FindObjectOfType<Spawner>().correctResponse.ToString(); // true for correct, false for incorrect
         rowDataTemp[12] = FindObjectOfType<Spawner>().saveTargetPosition.ToString();
         rowData.Add(rowDataTemp);
 
-        writeBehavData();
+        WriteResponseData();
     }
 
-    private void writeBehavData()
+    private void WriteResponseData()
     {
         var output = new string[rowData.Count][];
 
@@ -78,7 +77,7 @@ public class TrackBehavioralData : MonoBehaviour
         for (var index = 0; index < length; index++)
             sb2.AppendLine(string.Join(delimiter, output[index]));
 
-        var filePath = getBehavPath();
+        var filePath = GetDataPath();
 
         var outStream = File.CreateText(filePath);
         outStream.WriteLine(sb2);

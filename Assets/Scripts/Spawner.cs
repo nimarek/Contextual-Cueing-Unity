@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 {
     public static int TRIALSMAX = 8;
     public float angle;
-    private Vector3 centerPos;
+    public Vector3 centerPos;
     private Quaternion centerRot;
     public int chooseCircle;
 
@@ -83,8 +83,8 @@ public class Spawner : MonoBehaviour
 
         saveTargetPosition = rndTrial.targetChoosePosition;
 
-        rndTrial.randomPositionVoidLists = new List<List<int>>();
-        rndTrial.randomRotationVoidLists = new List<List<int>>();
+        rndTrial.PositionVoidLists = new List<List<int>>();
+        rndTrial.RotationVoidLists = new List<List<int>>();
 
         for (var z = 0; z < numCircles; z++)
         {
@@ -92,12 +92,12 @@ public class Spawner : MonoBehaviour
 
             chooseTrial.ShuffleDisplayConfiguration(trialConfig);
 
-            var randomRotationVoidList = new List<int>();
+            var RotationVoidList = new List<int>();
 
-            for (var i = 0; i < numObjects; i++) randomRotationVoidList.Add(GenerateRotationsDistractor());
+            for (var i = 0; i < numObjects; i++) RotationVoidList.Add(GenerateRotationsDistractor());
 
-            rndTrial.randomPositionVoidLists.Add(trialConfig);
-            rndTrial.randomRotationVoidLists.Add(randomRotationVoidList);
+            rndTrial.PositionVoidLists.Add(trialConfig);
+            rndTrial.RotationVoidLists.Add(RotationVoidList);
         }
 
         StartTrial(rndTrial);
@@ -113,8 +113,8 @@ public class Spawner : MonoBehaviour
 
         saveTargetPosition = fixedTrial.targetChoosePosition;
 
-        fixedTrial.randomPositionVoidLists = new List<List<int>>();
-        fixedTrial.randomRotationVoidLists = new List<List<int>>();
+        fixedTrial.PositionVoidLists = new List<List<int>>();
+        fixedTrial.RotationVoidLists = new List<List<int>>();
 
         for (var i = 0; i <= chooseTrial.numFixedTrials; i++)
         for (var z = 0; z < numCircles; z++)
@@ -123,12 +123,12 @@ public class Spawner : MonoBehaviour
 
             chooseTrial.ShuffleDisplayConfiguration(trialConfig);
 
-            var randomRotationVoidList = new List<int>();
+            var RotationVoidList = new List<int>();
 
-            for (var k = 0; k < numObjects; k++) randomRotationVoidList.Add(GenerateRotationsDistractor());
+            for (var k = 0; k < numObjects; k++) RotationVoidList.Add(GenerateRotationsDistractor());
 
-            fixedTrial.randomPositionVoidLists.Add(trialConfig);
-            fixedTrial.randomRotationVoidLists.Add(randomRotationVoidList);
+            fixedTrial.PositionVoidLists.Add(trialConfig);
+            fixedTrial.RotationVoidLists.Add(RotationVoidList);
         }
     }
 
@@ -162,7 +162,7 @@ public class Spawner : MonoBehaviour
         correctResponse = true;
     }
 
-    private void DrawCircle(Vector3 center, bool targetIsOnCircle, Trial trial, int circle)
+    public void DrawCircle(Vector3 center, bool targetIsOnCircle, Trial trial, int circle)
     {
         for (var i = 0; i < numObjects; i++)
         {
@@ -175,10 +175,10 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                var randomPositionVoidList = trial.randomPositionVoidLists[circle];
+                var randomPositionVoidList = trial.PositionVoidLists[circle];
                 var randomPositionVoid = randomPositionVoidList[i];
 
-                var randomRotationVoidList = trial.randomRotationVoidLists[circle];
+                var randomRotationVoidList = trial.RotationVoidLists[circle];
                 var randomRotationVoid = randomRotationVoidList[i];
 
                 InstantiateDistractor(randomPositionVoid, randomRotationVoid, pos, rot);
@@ -215,7 +215,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void InstantiateTarget(Vector3 pos, Quaternion rot)
+    private void InstantiateTarget(Vector3 pos, Quaternion rot)
     {
         targetPos = pos;
         var instanceOfTarget = Instantiate(Target, pos, rot, transform);

@@ -4,19 +4,20 @@ public class SubjectInput : MonoBehaviour
 {
     public bool blockPause;
     public ChooseTrial chooseTrial;
-    public TrackBehavioralData TrackBehavioralData;
     public InterTrialInterBlock interBlock;
     public InterTrialInterBlock interTrialInterBlock;
     public bool isFixedTrial;
 
     public bool isInterTrial;
-    public Spawner spawner;
+    public Spawner Spawner;
 
     public bool subClicked;
     public bool subCorrectResponse;
     public bool subInputLeft;
     public bool subInputRight;
     public Timer timer;
+    public TrackBehavioralData TrackBehavioralData;
+    public SaveDisplayConfiguration SaveDisplayConfiguration;
 
     public void Update()
     {
@@ -29,9 +30,10 @@ public class SubjectInput : MonoBehaviour
         {
             if (!subClicked && Input.GetButtonDown("Fire1"))
             {
-                if (spawner.flipTarget)
+                if (Spawner.flipTarget)
                 {
                     timer.StopRecord();
+
                 }
                 else
                 {
@@ -44,7 +46,7 @@ public class SubjectInput : MonoBehaviour
 
             if (!subClicked && Input.GetButtonDown("Fire2"))
             {
-                if (spawner.flipTarget)
+                if (Spawner.flipTarget)
                 {
                     timer.StopRecord();
                 }
@@ -63,13 +65,14 @@ public class SubjectInput : MonoBehaviour
 
     private void EndTrial()
     {
-        TrackBehavioralData.saveTrial();
-        
+        TrackBehavioralData.FindResponseVariables();
+        SaveDisplayConfiguration.SaveTrialConfiguration();
+
         subClicked = true;
         isInterTrial = true;
-        spawner.DeleteAllChildren();
+        Spawner.DeleteAllChildren();
 
-        interBlock.StartInterTrialFixation();
+        interBlock.StartInterTrialFixation(Spawner.centerPos, Spawner.numCircles);
     }
 
     private void EndInterTrial()

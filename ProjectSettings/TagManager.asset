@@ -7,6 +7,10 @@ TagManager:
   - interTrialFixation
   - Target
   - Distractor
+  - InterTrialFixation
+  - projectile
+  - FxTemporaire
+  - StartUp
   layers:
   - Default
   - TransparentFX

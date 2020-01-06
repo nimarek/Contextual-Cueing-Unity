@@ -6,8 +6,6 @@ public class Timer : MonoBehaviour
     public float currentTime;
     public float globalTime;
     public float interTrialTime;
-
-    //string write2File = "Assets/Data/ReactionTime.txt";
     private bool record;
 
     private void Awake()
@@ -21,8 +19,6 @@ public class Timer : MonoBehaviour
         instance = this;
     }
 
-
-    // Update is called once per frame
     private void Update()
     {
         if (record)
@@ -44,10 +40,5 @@ public class Timer : MonoBehaviour
         record = false;
         Debug.Log("<color=red>GlobalTime</color>: " + globalTime);
         Debug.Log("<color=red>TrialTime</color>: " + currentTime);
-    }
-
-    public void interTrialTimer()
-    {
-        interTrialTime += 1 * Time.deltaTime;
     }
 }

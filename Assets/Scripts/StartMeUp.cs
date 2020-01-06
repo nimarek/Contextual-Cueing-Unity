@@ -3,38 +3,38 @@ using UnityEngine;
 
 public class StartMeUp : MonoBehaviour
 {
-    private readonly Vector3 startUpPos = new Vector3(5, 3, -3);
-    public int blockPauseDuration = 2;
+    public int blockPauseDuration = 10;
     private Quaternion centerRot;
     public ChooseTrial chooseTrial;
     public InterTrialInterBlock interTrialInterBlock;
-    public Spawner spawner;
+    public Spawner Spawner;
+    public float scaleStartFixation;
 
     public GameObject startFixation;
     public SubjectInput subjectInput;
 
     public void Start()
     {
-        StartUpText();
+        StartFixation(Spawner.centerPos, Spawner.numCircles);
     }
 
-    public void StartUpText()
+    public void StartFixation(Vector3 centerPosition, int numCircles)
     {
-        subjectInput.isInterTrial = true;
-
-        var instanceOfInterTrialFixation = Instantiate(startFixation, startUpPos, centerRot, transform);
-        instanceOfInterTrialFixation.transform.localScale = new Vector3(interTrialInterBlock.scaleInterTrialFixation,
-            interTrialInterBlock.scaleInterTrialFixation, interTrialInterBlock.scaleInterTrialFixation);
-        instanceOfInterTrialFixation.gameObject.tag = "interTrialFixation";
-
+        centerPosition[1] = numCircles / 2;
+        
+        var instanceOfStartFixation = Instantiate(startFixation, centerPosition, centerRot, transform);
+        instanceOfStartFixation.gameObject.tag = "InterTrialFixation";
+        instanceOfStartFixation.transform.localScale = new Vector3(scaleStartFixation,
+            scaleStartFixation, scaleStartFixation);
+        
         Invoke("DeleteAllChildren", blockPauseDuration); // Change Start time according to your needs
-        StartCoroutine("startPause");
+        StartCoroutine("StartPause");
     }
-
-    private IEnumerator startPause()
+    
+    private IEnumerator StartPause()
     {
         yield return new WaitForSeconds(blockPauseDuration);
-        chooseTrial.ShuffleTrialOrder(spawner.trialMarkers);
+        chooseTrial.ShuffleTrialOrder(Spawner.trialMarkers);
     }
 
     public void DeleteAllChildren()

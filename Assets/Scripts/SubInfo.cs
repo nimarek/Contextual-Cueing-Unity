@@ -4,6 +4,6 @@ public class SubInfo : MonoBehaviour
 {
     public string age;
     public string corrected;
-    public string gender;
+    public string sex;
     public string subID;
 }

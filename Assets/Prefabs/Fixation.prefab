@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33006828722109644}
   - component: {fileID: 135948406223229604}
   - component: {fileID: 23260544952691118}
-  - component: {fileID: 8599885192385786955}
+  - component: {fileID: 5904601301342196209}
   m_Layer: 0
   m_Name: Fixation
   m_TagString: interTrialFixation
@@ -92,7 +92,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8599885192385786955
+--- !u!114 &5904601301342196209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,10 +101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1704233306126752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd2349fdba521743a88c913629c8232, type: 3}
+  m_Script: {fileID: 11500000, guid: 32c00fc97e982bc46b63acbd0e8ce7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endColor: {r: 0, g: 1, b: 0.17721963, a: 0}
   speed: 1
-  startTime: 0
   startColor: {r: 1, g: 0, b: 0, a: 0}
-  endColor: {r: 0, g: 1, b: 0.16342616, a: 0}
+  InterTrialInterBlock: {fileID: 0}

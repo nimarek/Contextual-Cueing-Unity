@@ -3,8 +3,8 @@
 public class Trial
 {
     public bool isTargetFlipped;
-    public List<List<int>> randomPositionVoidLists;
-    public List<List<int>> randomRotationVoidLists;
+    public List<List<int>> PositionVoidLists;
+    public List<List<int>> RotationVoidLists;
     public int targetChooseCircle;
     public int targetChoosePosition;
 }
