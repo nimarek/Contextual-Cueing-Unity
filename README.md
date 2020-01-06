@@ -5,4 +5,4 @@ The experiment can be performed either directly on a computer with mouse and key
 
 The number of repeated and randomly generated search displays can be set separately, as well as the total number of distractors and their placement in virtual space.
 
-![An example search display](https://imgur.com/a/XCYEcDa)
+![An example search display](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_1.png)
