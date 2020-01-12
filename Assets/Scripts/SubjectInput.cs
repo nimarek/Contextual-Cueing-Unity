@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SubjectInput : MonoBehaviour
 {
@@ -7,17 +8,16 @@ public class SubjectInput : MonoBehaviour
     public InterTrialInterBlock interBlock;
     public InterTrialInterBlock interTrialInterBlock;
     public bool isFixedTrial;
-
     public bool isInterTrial;
     public Spawner Spawner;
-
+    private float InterTrialPause = 1.0f;
     public bool subClicked;
     public bool subCorrectResponse;
     public bool subInputLeft;
     public bool subInputRight;
     public Timer timer;
     public TrackBehavioralData TrackBehavioralData;
-    public SaveDisplayConfiguration SaveDisplayConfiguration;
+    public TrackDisplayConfiguration TrackDisplayConfiguration;
 
     public void Update()
     {
@@ -66,16 +66,22 @@ public class SubjectInput : MonoBehaviour
     private void EndTrial()
     {
         TrackBehavioralData.FindResponseVariables();
-        SaveDisplayConfiguration.SaveTrialConfiguration();
+        TrackDisplayConfiguration.SaveTrialConfiguration();
 
         subClicked = true;
         isInterTrial = true;
         Spawner.DeleteAllChildren();
-
-        interBlock.StartInterTrialFixation(Spawner.centerPos, Spawner.numCircles);
+        
+        Invoke("CallTrialStart", InterTrialPause);
     }
 
-    private void EndInterTrial()
+    public void CallTrialStart()
+    {
+        interBlock.StartInterTrialFixation(Spawner.centerPosInterTrial);
+    }
+
+
+    public void EndInterTrial()
     {
         interTrialInterBlock.DeleteAllChildren();
         subClicked = false;

@@ -11,7 +11,8 @@ public class Spawner : MonoBehaviour
 {
     public static int TRIALSMAX = 8;
     public float angle;
-    public Vector3 centerPos;
+    public Vector3 centerPosStart;
+    public Vector3 centerPosInterTrial;
     private Quaternion centerRot;
     public int chooseCircle;
 
@@ -46,7 +47,7 @@ public class Spawner : MonoBehaviour
     public List<int> trialMarkers = new List<int>
         {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12};
 
-    // Generate fixed displays once for the entire experiment
+    // Generate data folder & fixed displays for the entire experiment
     private void Start()
     {
         for (var i = 0; i < TRIALSMAX; i++)
@@ -54,7 +55,13 @@ public class Spawner : MonoBehaviour
             var fixedTrial = new Trial();
             fixedTrials.Add(fixedTrial);
         }
-
+        
+        System.IO.Directory.CreateDirectory(Application.dataPath + "/Data/" + "sub-" + SubInfo.subID);
+        
+        centerPosStart = new Vector3(numCircles, (numCircles / 2) + 2 , 0);
+        centerPosInterTrial = new Vector3(numCircles, (numCircles / 2) + 2, 0);
+        
+        // Generate pseudo random display
         GenerateFixedDisplay(fixedTrials[0], 3, Random.Range(1, numObjects / 2));
         GenerateFixedDisplay(fixedTrials[1], 3, Random.Range(1, numObjects / 2));
 
@@ -70,7 +77,6 @@ public class Spawner : MonoBehaviour
         Timer = Timer.instance;
     }
 
-    // Generate pseudo random display
     public void GenerateRandomDisplay(int targetChooseCircle, int randomRange)
     {
         var rndTrial = new Trial();
@@ -186,7 +192,7 @@ public class Spawner : MonoBehaviour
 
             if (i == numObjects / 2)
             {
-                centerPos = pos;
+                centerPosStart = pos;
                 centerRot = rot;
             }
         }
@@ -208,7 +214,7 @@ public class Spawner : MonoBehaviour
     {
         if (randomPositionVoid == 1)
         {
-            var instanceOfDistractor = Instantiate(distractor, pos, rot, transform);
+            GameObject instanceOfDistractor = Instantiate(distractor, pos, rot, transform);
             instanceOfDistractor.transform.localScale = new Vector3(scaleDistractor, scaleDistractor, scaleDistractor);
             instanceOfDistractor.gameObject.tag = "Distractor";
             instanceOfDistractor.transform.Rotate(new Vector3(0, 0, randomRotationVoid));
@@ -218,7 +224,7 @@ public class Spawner : MonoBehaviour
     private void InstantiateTarget(Vector3 pos, Quaternion rot)
     {
         targetPos = pos;
-        var instanceOfTarget = Instantiate(Target, pos, rot, transform);
+        GameObject instanceOfTarget = Instantiate(Target, pos, rot, transform);
         if (flipTarget)
         {
             instanceOfTarget.transform.localScale = new Vector3(-1 * scaleTarget, scaleTarget, scaleTarget);

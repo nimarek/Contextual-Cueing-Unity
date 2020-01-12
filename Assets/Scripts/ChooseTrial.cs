@@ -164,7 +164,7 @@ public class ChooseTrial : MonoBehaviour
             }
             else
             {
-                InterTrialInterBlock.StartInterBlockFixation(Spawner.centerPos, Spawner.numCircles);
+                InterTrialInterBlock.StartInterBlockFixation(Spawner.centerPosInterTrial);
                 Debug.Log("<color=green>Block Number: </color>" + countBlock + "<color=green> finished </color>.");
 
                 countBlock++;

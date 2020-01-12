@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.contextualcueing_vr.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Exp_Psy\\Desktop\\Experiments\\Nico\\ContextualCueing_VR\\Contextual-Cueing-Unity\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "ContextualCueing_VR [Testing]"
+        }
+      }
+    }
+  ]
+}

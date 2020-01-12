@@ -17,7 +17,7 @@ public class TrackBehavioralData : MonoBehaviour
 
     private string GetDataPath()
     {
-        return Application.dataPath + "/Data/" + "sub-" + FindObjectOfType<SubInfo>().subID + "_data.csv";
+        return Application.dataPath + "/Data/" + "sub-" + SubInfo.subID + "/sub-" + FindObjectOfType<SubInfo>().subID + "_behavioral_data.csv";
     }
 
     public void WriteHeader()
