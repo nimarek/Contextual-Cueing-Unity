@@ -1,9 +1,8 @@
 # Contextual-Cueing-Unity
-The classic contextual cueing paradigm for visual search (Chun and Jiang, 1998) in the Unity Gaming Engine (v. 2019.1.0f2). This implementation aims for flexibility in the design of the search displays and will be continuously extended.
+The classic contextual cueing paradigm for visual search (Chun and Jiang, 1998) in the `Unity Gaming Engine (v. 2019.1.0f2)`. This implementation aims for flexibility in the design of the search displays and will be continuously extended.
 
 **An example search display:**
 ![An example search display](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_1.png) 
-___
 
 **Features:**
 
