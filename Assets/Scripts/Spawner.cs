@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/* Author: Nico Marek (2019). Sepcial thanks to Sophie Anteboth (https://github.com/S-Anteboth) for her patience.
+/* 
+ * Author: Nico Marek (2019). Sepcial thanks to Sophie Anteboth (https://github.com/S-Anteboth) for her patience.
  * This script is used to generate contextual cueing such displays. Starting point for this implementation are the works
  * of Chun, M. M., & Jiang, Y. (1998). Both the old (i.e. all repeated configurations) and new (i.e. all random configurations)
  * condition are created here. This experiment can be used both on a conventional screen and with a virtual reality headset.
@@ -111,7 +112,7 @@ public class Spawner : MonoBehaviour
 
     public void GenerateFixedDisplay(Trial fixedTrial, int targetChooseCircle, int targetChoosePosition)
     {
-        SetBooleansFixed();
+        //SetBooleansFixed();
 
         fixedTrial.isTargetFlipped = Random.value > 0.5f;
         fixedTrial.targetChooseCircle = targetChooseCircle;

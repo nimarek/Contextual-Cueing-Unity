@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
+using PupilLabs;
 
 public class StartMeUp : MonoBehaviour
 {
+    // This boolean needs to be channged via the Unity Editor Interface
+    public bool enableEyeTracking = false;
     public int blockPauseDuration = 1;
+    public int StartPauseDuration;
     private Quaternion centerRot;
     public ChooseTrial chooseTrial;
     public Spawner Spawner;
+    public DisableDuringCalibration DisableDuringCalibration;
     public float scaleStartFixation;
 
     public GameObject startFixation;
@@ -14,7 +19,26 @@ public class StartMeUp : MonoBehaviour
 
     public void Start()
     {
-        StartFixation(Spawner.centerPosStart);
+        if (enableEyeTracking)
+        {
+            Debug.Log("<color=Green>Starting Eye-Tracker mode. Waiting for calibration ... </color>");
+        }
+        
+        if (!enableEyeTracking)
+        {
+            Debug.Log("<color=Green>No Eye-Tracking enabled.</color>");
+            StartFixation(Spawner.centerPosStart);
+        }
+    }
+
+    public void Update() 
+    {
+        // Enable if not in eye tracking mode
+        if (DisableDuringCalibration.EyeTrackingSucc && enableEyeTracking)
+        {
+            StartFixation(Spawner.centerPosStart);
+            DisableDuringCalibration.EyeTrackingSucc = false;
+        }    
     }
 
     public void StartFixation(Vector3 centerPosition)
@@ -24,13 +48,13 @@ public class StartMeUp : MonoBehaviour
         instanceOfStartFixation.transform.localScale = new Vector3(scaleStartFixation,
             scaleStartFixation, scaleStartFixation);
         
-        Invoke("DeleteAllChildren", blockPauseDuration); // Change Start time according to your needs
+        Invoke("DeleteAllChildren", StartPauseDuration); // Change Start time according to your needs
         StartCoroutine("StartPause");
     }
     
     private IEnumerator StartPause()
     {
-        yield return new WaitForSeconds(blockPauseDuration);
+        yield return new WaitForSeconds(StartPauseDuration);
         chooseTrial.ShuffleTrialOrder(Spawner.trialMarkers);
     }
 

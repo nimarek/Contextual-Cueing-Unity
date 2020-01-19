@@ -10,6 +10,7 @@ using UnityEngine;
 public class TrackHeadMotion : MonoBehaviour
 {
     private readonly List<string[]> rowData = new List<string[]>();
+    private readonly List<string[]> headDataTmp = new List<string[]>();
     public InterTrialInterBlock InterTrialInterBlock;
     public SubInfo SubInfo;
     public Timer Timer;
@@ -21,53 +22,37 @@ public class TrackHeadMotion : MonoBehaviour
     
     private void FixedUpdate()
     {
-        Debug.Log(transform.position);
-        Debug.Log(Time.fixedDeltaTime);
+        //Debug.Log("Global Time: " + FindObjectOfType<Timer>().globalTime.ToString("F3") + "Head Position: " + transform.position.ToString());
     }
 
     private string GetDataPath()
     {
-        return Application.dataPath + "/Data/" + "sub-" + FindObjectOfType<SubInfo>().subID + "_head_data.csv";
+        return Application.dataPath + "/Data/" + "sub-" + SubInfo.subID + "/sub-" + FindObjectOfType<SubInfo>().subID + "_head_data.csv";
     }
 
     public void WriteHeader()
     {
-        var rowDataTemp = new string[14];
+        var rowDataTemp = new string[6];
         rowDataTemp[0] = "sub-ID";
         rowDataTemp[1] = "sex";
         rowDataTemp[2] = "corrected";
-        rowDataTemp[3] = "age";
-        rowDataTemp[4] = "block";
-        rowDataTemp[5] = "trialNumberGlobal";
-        rowDataTemp[6] = "trialNumberBlock";
-        rowDataTemp[7] = "trialType";
-        rowDataTemp[8] = "timeStampGlobal";
-        rowDataTemp[9] = "rt";
-        rowDataTemp[10] = "correctResponse";
-        rowDataTemp[11] = "subResponse";
-        rowDataTemp[12] = "targetPosition";
-        rowData.Add(rowDataTemp);
+        rowDataTemp[3] = "sub-ID";
+        rowDataTemp[4] = "timeStampGlobal";
+        rowDataTemp[5] = "headMotion";
 
+        rowData.Add(rowDataTemp);
         WriteResponseData();
     }
 
     public void FindResponseVariables()
     {
-        var rowDataTemp = new string[14];
+        var rowDataTemp = new string[6];
         rowDataTemp[0] = FindObjectOfType<SubInfo>().subID;
         rowDataTemp[1] = FindObjectOfType<SubInfo>().sex;
         rowDataTemp[2] = FindObjectOfType<SubInfo>().corrected;
         rowDataTemp[3] = FindObjectOfType<SubInfo>().age;
-        rowDataTemp[4] = FindObjectOfType<ChooseTrial>().countBlock.ToString();
-        rowDataTemp[5] = FindObjectOfType<ChooseTrial>().countTrialGlobal.ToString();
-        rowDataTemp[6] = FindObjectOfType<ChooseTrial>().countTrialBlock.ToString();
-        rowDataTemp[7] = FindObjectOfType<SubjectInput>().isFixedTrial.ToString(); // true for fixed, false for rnd
-        rowDataTemp[8] = FindObjectOfType<Timer>().globalTime.ToString("F3");
-        rowDataTemp[9] = FindObjectOfType<Timer>().currentTime.ToString("F3");
-        rowDataTemp[10] = FindObjectOfType<Spawner>().flipTarget.ToString();
-        rowDataTemp[11] =
-            FindObjectOfType<Spawner>().correctResponse.ToString(); // true for correct, false for incorrect
-        rowDataTemp[12] = FindObjectOfType<Spawner>().saveTargetPosition.ToString();
+        rowDataTemp[4] = FindObjectOfType<Timer>().globalTime.ToString("F3");
+        rowDataTemp[5] = transform.position.ToString();
         rowData.Add(rowDataTemp);
 
         WriteResponseData();

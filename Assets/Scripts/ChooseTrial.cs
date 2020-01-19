@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ChooseTrial : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class ChooseTrial : MonoBehaviour
     public InterTrialInterBlock InterTrialInterBlock;
     public SubjectInput subjectInput;
     public Timer timer;
-
+    
     public void ShuffleDisplayConfiguration(List<int> displayConfiguration)
     {
         for (var i = displayConfiguration.Count - 1; i > 0; i--)
@@ -79,64 +81,72 @@ public class ChooseTrial : MonoBehaviour
             {
                 if (Spawner.trialMarkers[chooseDisplay] == 1)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[0]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 2)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[1]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 3)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[2]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 4)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[3]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 5)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[4]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 6)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[5]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 7)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[6]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 8)
                 {
+                    Spawner.SetBooleansFixed();
                     Spawner.StartTrial(Spawner.fixedTrials[7]);
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a repeated trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 9)
                 {
                     Spawner.GenerateRandomDisplay(4, Random.Range(1, Spawner.numObjects / 2));
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a novel trial.");
                     return;
                 }
 
@@ -144,14 +154,14 @@ public class ChooseTrial : MonoBehaviour
                 {
                     Spawner.GenerateRandomDisplay(2,
                         Random.Range(Spawner.numObjects / 2, Spawner.numObjects - 1));
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a novel trial.");
                     return;
                 }
 
                 if (Spawner.trialMarkers[chooseDisplay] == 11)
                 {
                     Spawner.GenerateRandomDisplay(2, Random.Range(1, Spawner.numObjects / 2));
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a novel trial.");
                     return;
                 }
 
@@ -159,7 +169,7 @@ public class ChooseTrial : MonoBehaviour
                 {
                     Spawner.GenerateRandomDisplay(4,
                         Random.Range(Spawner.numObjects / 2, Spawner.numObjects - 1));
-                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials);
+                    Debug.Log("Trial: " + countTrialBlock + " Of: " + maxTrials + " is a novel trial.");
                 }
             }
             else

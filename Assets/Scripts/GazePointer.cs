@@ -48,7 +48,7 @@ public class GazePointer : MonoBehaviour
 
     private void CheckCollision()
     {
-        Debug.Log("Hit it!");
+        Debug.Log("Gaze fixation: Done! End trial.");
         SubjectInput.EndInterTrial();
     }
 

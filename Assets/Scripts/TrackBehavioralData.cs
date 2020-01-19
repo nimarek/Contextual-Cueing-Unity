@@ -22,7 +22,7 @@ public class TrackBehavioralData : MonoBehaviour
 
     public void WriteHeader()
     {
-        var rowDataTemp = new string[14];
+        var rowDataTemp = new string[13];
         rowDataTemp[0] = "sub-ID";
         rowDataTemp[1] = "sex";
         rowDataTemp[2] = "corrected";
@@ -35,7 +35,6 @@ public class TrackBehavioralData : MonoBehaviour
         rowDataTemp[9] = "rt";
         rowDataTemp[10] = "correctResponse";
         rowDataTemp[11] = "subResponse";
-        rowDataTemp[12] = "targetPosition";
         rowData.Add(rowDataTemp);
 
         WriteResponseData();
@@ -43,7 +42,7 @@ public class TrackBehavioralData : MonoBehaviour
 
     public void FindResponseVariables()
     {
-        var rowDataTemp = new string[14];
+        var rowDataTemp = new string[13];
         rowDataTemp[0] = FindObjectOfType<SubInfo>().subID;
         rowDataTemp[1] = FindObjectOfType<SubInfo>().sex;
         rowDataTemp[2] = FindObjectOfType<SubInfo>().corrected;
@@ -57,7 +56,6 @@ public class TrackBehavioralData : MonoBehaviour
         rowDataTemp[10] = FindObjectOfType<Spawner>().flipTarget.ToString();
         rowDataTemp[11] =
             FindObjectOfType<Spawner>().correctResponse.ToString(); // true for correct, false for incorrect
-        rowDataTemp[12] = FindObjectOfType<Spawner>().saveTargetPosition.ToString();
         rowData.Add(rowDataTemp);
 
         WriteResponseData();

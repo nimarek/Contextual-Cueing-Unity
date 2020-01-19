@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Valve.VR;
 
 public class SubjectInput : MonoBehaviour
 {
@@ -13,11 +14,13 @@ public class SubjectInput : MonoBehaviour
     private float InterTrialPause = 1.0f;
     public bool subClicked;
     public bool subCorrectResponse;
-    public bool subInputLeft;
-    public bool subInputRight;
+  
     public Timer timer;
     public TrackBehavioralData TrackBehavioralData;
     public TrackDisplayConfiguration TrackDisplayConfiguration;
+
+    public SteamVR_Input_Sources leftHand;
+    public SteamVR_Input_Sources rightHand;
 
     public void Update()
     {
@@ -28,7 +31,7 @@ public class SubjectInput : MonoBehaviour
     {
         if (!blockPause && !isInterTrial)
         {
-            if (!subClicked && Input.GetButtonDown("Fire1"))
+            if (!subClicked && Input.GetButtonDown("Fire1") ^ (SteamVR_Input.GetStateDown("leftTrigger", leftHand)))
             {
                 if (Spawner.flipTarget)
                 {
@@ -44,7 +47,7 @@ public class SubjectInput : MonoBehaviour
                 EndTrial();
             }
 
-            if (!subClicked && Input.GetButtonDown("Fire2"))
+            if (!subClicked && Input.GetButtonDown("Fire2") ^ (SteamVR_Input.GetStateDown("rightTrigger", rightHand)))
             {
                 if (Spawner.flipTarget)
                 {
@@ -66,7 +69,7 @@ public class SubjectInput : MonoBehaviour
     private void EndTrial()
     {
         TrackBehavioralData.FindResponseVariables();
-        TrackDisplayConfiguration.SaveTrialConfiguration();
+        //TrackDisplayConfiguration.SaveTrialConfiguration();
 
         subClicked = true;
         isInterTrial = true;
