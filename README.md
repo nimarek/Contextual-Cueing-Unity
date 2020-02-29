@@ -1,6 +1,9 @@
 # Contextual-Cueing-Unity
 The classic contextual cueing paradigm for visual search `(Chun and Jiang, 1998)` in the `Unity Gaming Engine (v. 2019.1.0f2)`. This implementation aims for flexibility in the design of the search displays and will be continuously extended.
 
+**Classic 2D Contextual Cueing (left) and an example Contextual Cueing VR configuration:**
+![Classic 2D Contextual Cueing (left) and an example Contextual Cueing VR configuration](https://i.ibb.co/K2GgB8Y/Posterzeugs.png)
+
 **Calibration using Pupil-Labs-Eyetracking inside of Unity:**
 ![Calibration using Pupil-Labs-Eyetracking inside of Unity](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_0.png) 
 
