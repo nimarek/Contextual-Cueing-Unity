@@ -4,12 +4,6 @@ The classic contextual cueing paradigm for visual search `(Chun and Jiang, 1998)
 **Classic 2D Contextual Cueing (left) and an example Contextual Cueing VR configuration:**
 ![Classic 2D Contextual Cueing (left) and an example Contextual Cueing VR configuration](https://i.ibb.co/K2GgB8Y/Posterzeugs.png)
 
-**Calibration using Pupil-Labs-Eyetracking inside of Unity:**
-![Calibration using Pupil-Labs-Eyetracking inside of Unity](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_0.png) 
-
-**An example search display:**
-![An example search display](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_1.png) 
-
 **Features:**
 
 - The experiment can be performed either directly on a computer with mouse and keyboard or by using a virtual reality headset.
@@ -18,6 +12,12 @@ The classic contextual cueing paradigm for visual search `(Chun and Jiang, 1998)
 - Inter trial gaze pointer with an adjustable sphere to detect fixations.
 - If the same old search display is repeated within one block, a Fisher-Yates shuffle is used to check for repetitions.
 - Measurement of reaction times, head movements and display configurations in `/data/sub-**/ folder`.
+
+**Calibration using Pupil-Labs-Eyetracking inside of Unity:**
+![Calibration using Pupil-Labs-Eyetracking inside of Unity](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_0.png) 
+
+**An example search display:**
+![An example search display](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/ccvr_1.png) 
 
 ![Detailed infos](https://github.com/nimarek/Contextual-Cueing-Unity/blob/master/images/cc_vr_2.png) 
 
